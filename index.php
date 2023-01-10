@@ -59,20 +59,34 @@
             $parking = $value["parking"];
             $vote = $value["vote"];
             $distance_to_center = $value["distance_to_center"];
-            echo "<h3> NOME: $name </h3>" . $description . "<p> Parcheggio: $parking </p>" . "<p> Voto: $vote </p>" . "<p> Distanza dal centro: $distance_to_center km</p>" . "<br>";
-            }
 
             if ($parking === true) {
-
-                echo " Disponibile";
+                $parkingstring = "Disponibile";
             } else {
-
-                echo " NON Disponibile";
+                $parkingstring = " NON Disponibile";
             }
+            }    
         ?>
-        <!-- <table class="table table-success table-striped">
-            ...
-        </table> -->
+        
+    </div>
+
+    <div>
+        <?php if (count($hotels) > 0): ?>
+            <table>
+            <thead>
+                <tr>
+                <th><?php echo implode('</th><th>', array_keys(current($hotels))); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($hotels as $row): array_map('htmlentities', $row); ?>
+                <tr>
+                <td><?php echo implode('</td><td>', $row); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+            </table>
+    <?php endif; ?>
     </div>
 </body>
 </html>
